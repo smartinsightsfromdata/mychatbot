@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="Chatroom.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <title>Jokes ChatBot</title>
+  </head>
+  <style>
+    .warns{
+      font-size: 30px;
+    }
+    .warning-container{
+      width: 100%;
+    }
+    .warning{
+      background-color: orange;
+      padding: 5px;
+      text-align: center;
+      border-radius: 5px;
+      width: 50%;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <div class="warning-container">
+      <div class="warning"><span class="warns">&#128526;</span>Please, ask me things <strong>ONLY</strong> related to Jokes since I do not respond to anything else <span class="warns">&#129299;</span></div>
+    </div>
+    <div class="chat-container"></div>
+    <script src="Chatroom.js"></script>
+    <script type="text/javascript">
+      var welcomeMessage = "Hi! Funny Jokes here!!"
+              "\n\nHow may I help you?";
+      var chatroom = new window.Chatroom({
+        host: "http://localhost:8081",
+        title: "Chat with the Jokes ChatBot",
+        container: document.querySelector(".chat-container"),
+        waitingTimeout: 10000,
+        welcomeMessage: welcomeMessage,
+        speechRecognition: "en-US"
+      });
+      chatroom.openChat();
+    </script>
+  </body>
+</html>

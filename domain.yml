@@ -1,0 +1,40 @@
+intents:
+- greet
+- goodbye
+- thanks
+- deny
+- joke
+- enter_name
+- bot_challenge
+- affirm
+entities:
+- name
+slots:
+  name:
+    type: text
+    initial_value: human
+templates:
+  utter_name:
+  - text: Hey there! Tell me your name.
+  utter_greet:
+  - text: Nice to meet you {name}. How can I help?
+  utter_goodbye:
+  - text: Talk to you later!
+  utter_thanks:
+  - text: My pleasure.
+  utter_msg_not_understood_and_reformulate:
+  - text: Sorry, I did not understand that. Please, could you reformulate your question?
+  utter_reenter_name:
+  - text: I didn't get your name
+  utter_reentername:
+  - text: Please enter your name
+actions:
+- action_joke
+- action_fallback
+- utter_name
+- utter_thanks
+- utter_greet
+- utter_goodbye
+- utter_msg_not_understood_and_reformulate
+- utter_reenter_name
+- utter_reentername

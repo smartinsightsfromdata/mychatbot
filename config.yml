@@ -1,0 +1,44 @@
+language: en
+# pipeline: supervised_embeddings
+# policies:
+# - name: KerasPolicy
+#   epochs: 300
+#   max_history: 3
+#   batch_size: 100
+#   validation_split: 0.1
+# - name: FallbackPolicy
+#   nlu_threshold: 0.4
+#   core_threshold: 0.3
+#   fallback_action_name: action_fallback
+# - name: MemoizationPolicy
+#   max_history: 4
+# - name: FormPolicy
+# - name: MappingPolicy
+pipeline:
+- name: WhitespaceTokenizer
+- name: CRFEntityExtractor
+- name: CountVectorsFeaturizer
+  OOV_token: oov
+  token_pattern: (?u)\b\w+\b
+- name: CountVectorsFeaturizer
+  analyzer: "char_wb"
+  min_ngram: 1
+  max_ngram: 4
+- name: EmbeddingIntentClassifier
+  epochs: 100
+  loss_type: margin
+- name: EntitySynonymMapper
+
+policies:
+- name: EmbeddingPolicy
+  max_history: 10
+  epochs: 40
+  batch_size: [32,64]
+- max_history: 6
+  name: AugmentedMemoizationPolicy
+- name: FallbackPolicy
+  nlu_threshold: 0.3
+  core_threshold: 0.4
+  fallback_action_name: 'action_fallback'
+- name: MappingPolicy
+
